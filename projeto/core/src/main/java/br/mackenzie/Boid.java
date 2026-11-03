@@ -13,7 +13,8 @@ public class Boid extends Agente {
     public Vector2 separacao(Array<Boid> bando, float raioSeparacao) {
         Vector2 soma = new Vector2();
         int contagem = 0;
-        for (Boid outro : bando) {
+        for (int i = 0; i < bando.size; i++) {
+            Boid outro = bando.get(i);
             if (outro == this) continue;
             float d = posicao.dst(outro.posicao);
             if (d > 0f && d < raioSeparacao) {
@@ -30,7 +31,8 @@ public class Boid extends Agente {
     public Vector2 alinhamento(Array<Boid> bando, float raioVizinhanca) {
         Vector2 soma = new Vector2();
         int contagem = 0;
-        for (Boid outro : bando) {
+        for (int i = 0; i < bando.size; i++) {
+            Boid outro = bando.get(i);
             if (outro == this) continue;
             if (posicao.dst(outro.posicao) < raioVizinhanca) {
                 soma.add(outro.velocidade);
@@ -45,7 +47,8 @@ public class Boid extends Agente {
     public Vector2 coesao(Array<Boid> bando, float raioVizinhanca) {
         Vector2 centro = new Vector2();
         int contagem = 0;
-        for (Boid outro : bando) {
+        for (int i = 0; i < bando.size; i++) {
+            Boid outro = bando.get(i);
             if (outro == this) continue;
             if (posicao.dst(outro.posicao) < raioVizinhanca) {
                 centro.add(outro.posicao);

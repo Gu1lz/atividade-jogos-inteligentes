@@ -28,7 +28,8 @@ public class Bando {
     }
 
     public void atualizar(float dt) {
-        for (Boid b : boids) {
+        for (int i = 0; i < boids.size; i++) {
+            Boid b = boids.get(i);
             Vector2 sep = b.separacao(boids, raioSeparacao).scl(pesoSeparacao);
             Vector2 ali = b.alinhamento(boids, raioVizinhanca).scl(pesoAlinhamento);
             Vector2 coe = b.coesao(boids, raioVizinhanca).scl(pesoCoesao);
@@ -36,21 +37,22 @@ public class Bando {
             b.aplicarForca(ali);
             b.aplicarForca(coe);
         }
-        for (Boid b : boids) {
+        for (int i = 0; i < boids.size; i++) {
+            Boid b = boids.get(i);
             b.atualizar(dt);
             b.contornar(largura, altura);
         }
     }
 
     public void desenhar(ShapeRenderer sr) {
-        for (Boid b : boids) {
-            b.desenhar(sr, Color.SKY);
+        for (int i = 0; i < boids.size; i++) {
+            boids.get(i).desenhar(sr, Color.SKY);
         }
     }
 
     public void desenharVetores(ShapeRenderer sr) {
-        for (Boid b : boids) {
-            b.desenharVetores(sr);
+        for (int i = 0; i < boids.size; i++) {
+            boids.get(i).desenharVetores(sr);
         }
     }
 }
